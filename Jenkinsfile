@@ -31,11 +31,11 @@ pipeline {
 
         stage('Run in Docker') {
             steps {
-                def dockerImage = "mijn-dotnet-app"
+/*                 def dockerImage = "mijn-dotnet-app"
                 def containerName = "mijn-dotnet-app-container"
-                def port = "3000"
+                def port = "3000" */
 
-                sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}"
+                sh "docker run -p 3000:80 --rm --name dotnet-container mijn-dotnet-app"
             }
         }
     }
