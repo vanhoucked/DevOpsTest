@@ -23,10 +23,10 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    def dockerfile = "./Dockerfile"
-                    def dockerImage = "mijn-dotnet-app"
+/*                     def dockerfile = "./Dockerfile"
+                    def dockerImage = "mijn-dotnet-app" */
 
-                    sh "docker build -f ${dockerfile} -t ${dockerImage} ."
+                    sh "docker build -f ./Dockerfile -t mijn-dotnet-app ."
                 }
             }
         }
