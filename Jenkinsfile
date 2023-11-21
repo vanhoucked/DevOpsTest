@@ -26,7 +26,7 @@ pipeline {
                     def dockerImage = "mijn-dotnet-app"
                     def dockerfilePath = "./Dockerfile"
 
-                    sh "docker build -t ${dockerImage} -f ${dockerfilePath} ."
+                    sh "docker build -t ${dockerImage} ."
                 }
             }
         }
