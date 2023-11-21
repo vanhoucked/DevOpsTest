@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+/*         stage('Build') {
             steps {
                 script {
                     def dotnetCommand = "dotnet"
@@ -18,7 +18,7 @@ pipeline {
                     sh script: buildCommand, returnStatus: true
                 }
             }
-        }
+        } */
 
         stage('Docker Build') {
             steps {
