@@ -5,12 +5,12 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Server/Project.Server.csproj", "src/Server/"]
-COPY ["Client/Project.Client.csproj", "src/Client/"]
-COPY ["Shared/Project.Shared.csproj", "src/Shared/"]
-# COPY ["Services/Project.Services.csproj", "src/Services/"]
-# COPY ["Domain/Domain.csproj", "src/Domain/"]
-# COPY ["Persistence/Persistence.csproj", "src/Persistence/"]
+COPY ["srs/Server/Project.Server.csproj", "src/Server/"]
+COPY ["srs/Client/Project.Client.csproj", "src/Client/"]
+COPY ["src/Shared/Project.Shared.csproj", "src/Shared/"]
+COPY ["src/Services/Project.Services.csproj", "src/Services/"]
+COPY ["src/Domain/Domain.csproj", "src/Domain/"]
+COPY ["src/Persistence/Persistence.csproj", "src/Persistence/"]
 RUN dotnet restore "src/Server/Project.Server.csproj"
 
 COPY . .
