@@ -25,7 +25,7 @@ pipeline {
                 script {
                     def dockerImage = "mijn-dotnet-app"
 
-                    sh "docker build -f -t ${dockerImage} ."
+                    sh "docker build -t ${dockerImage} ."
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
             script {
                 def containerName = "mijn-dotnet-app-container"
                 
-                sh "docker rm -f ${containerName}"
+                sh "docker rm ${containerName}"
             }
         }
     }
