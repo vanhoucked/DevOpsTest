@@ -24,7 +24,6 @@ pipeline {
             steps {
                 script {
                     def dockerImage = "mijn-dotnet-app"
-                    def dockerfilePath = "./Dockerfile"
 
                     sh "docker build -t ${dockerImage} ."
                 }
@@ -36,8 +35,9 @@ pipeline {
                 script {
                     def dockerImage = "mijn-dotnet-app"
                     def containerName = "mijn-dotnet-app-container"
+                    def port = "3000"
 
-                    sh "docker run --rm --name ${containerName} ${dockerImage}"
+                    sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}"
                 }
             }
         }
