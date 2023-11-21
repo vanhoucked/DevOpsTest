@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-/*         stage('Build') {
+        stage('Build') {
             steps {
                 script {
                     def dotnetCommand = "dotnet"
@@ -18,25 +18,26 @@ pipeline {
                     sh script: buildCommand, returnStatus: true
                 }
             }
-        } */
+        }
 
         stage('Docker Build') {
             steps {
-/*              def dockerfile = "./Dockerfile"
-                def dockerImage = "mijn-dotnet-app" */
+                script {
+                    def dockerImage = "mijn-dotnet-app"
 
-                sh "ls -l"
-                sh 'docker build -f ./Dockerfile -t mijn-dotnet-app .'
+                    sh "docker build -f -t ${dockerImage} ."
                 }
+            }
         }
 
         stage('Run in Docker') {
             steps {
-/*                 def dockerImage = "mijn-dotnet-app"
+                script {
+                def dockerImage = "mijn-dotnet-app"
                 def containerName = "mijn-dotnet-app-container"
-                def port = "3000" */
+                def port = "3000"
 
-                sh "docker run -p 3000:80 --rm --name dotnet-container mijn-dotnet-app"
+                sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}"
             }
         }
     }
