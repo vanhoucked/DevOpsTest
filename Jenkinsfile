@@ -25,6 +25,7 @@ pipeline {
 /*              def dockerfile = "./Dockerfile"
                 def dockerImage = "mijn-dotnet-app" */
 
+                sh ls
                 sh 'docker build -f ./Dockerfile -t mijn-dotnet-app .'
                 }
         }
