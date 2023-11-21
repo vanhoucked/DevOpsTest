@@ -1,0 +1,9 @@
+﻿.mudcar {
+    max-width: 100%;
+    height: 400px;
+}
+.fill-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

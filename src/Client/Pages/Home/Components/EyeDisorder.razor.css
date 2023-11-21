@@ -1,0 +1,74 @@
+﻿.MudItem {
+    /* Voeg hier de stijlen voor MudItem toe */
+}
+
+.MudCard {
+    min-width: 18rem;
+    max-width: 22rem;
+    /* Voeg hier de stijlen voor MudCard toe */
+}
+
+.MudCardMedia {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* Voeg hier de stijlen voor MudCardMedia toe */
+}
+
+.MudCardContent {
+    min-height: 4rem;
+    max-height: 6rem;
+    /* Voeg hier de stijlen voor MudCardContent toe */
+}
+
+.MudText {
+    /* Voeg hier de algemene stijlen voor MudText toe */
+}
+
+    .MudText.Typo-h5 {
+        /* Voeg hier de specifieke stijlen voor Typo.h5 toe */
+    }
+
+    .MudText.Typo-body2 {
+        /* Voeg hier de specifieke stijlen voor Typo.body2 toe */
+    }
+.MudTextTitle {
+    margin-bottom: 1rem;
+}
+
+.MudCardActions {
+    /* Voeg hier de stijlen voor MudCardActions toe */
+}
+
+.MudButton {
+    /* Voeg hier de algemene stijlen voor MudButton toe */
+}
+
+    .MudButton.Variant-Text {
+        /* Voeg hier de specifieke stijlen voor Variant.Text toe */
+    }
+
+    .MudButton.Color-Primary {
+        /* Voeg hier de specifieke stijlen voor Color.Primary toe */
+    }
+
+.intro {
+    max-width: 60%; /* Voeg hier de gewenste maximale breedte in pixels of een andere eenheid toe */
+    margin: 0 auto 2rem auto; /* Hiermee wordt de div horizontaal gecentreerd op de pagina */
+    text-align: center; /* Hiermee wordt de tekst binnen de div gecentreerd */
+}
+
+.containerStyle {
+    /* Voeg hier de stijlen voor ContainerStyle toe */
+    background-color: #E0F7FA;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+
+.image-fit {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}

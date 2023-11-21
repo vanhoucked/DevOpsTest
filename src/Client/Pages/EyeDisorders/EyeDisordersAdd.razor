@@ -1,0 +1,71 @@
+﻿@page "/eyedisordersadd"
+@using MudBlazor
+@layout MainLayout
+
+<div class="container">
+    <MudContainer>
+        <h1>Add a New Eye Condition</h1>
+        <MudForm Model="@condition" OnValidSubmit="AddCondition">
+            <MudTextField Label="Oogaandoening" @bind-Value="condition.Name" Required="true" />
+            <MudTextField Label="Description" @bind-Value="condition.Description" Required="true" Multiline="true" />
+            <MudTextField Label="Treatment" @bind-Value="condition.Treatment" Required="true" Multiline="true" />
+            <div>
+                <MudAutocomplete @bind-Value="symptomToAdd" Label="Enter Symptom" />
+                <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" OnClick="AddSymptom">Add Symptom</MudButton>
+            </div>
+            @if (symptoms.Any())
+            {
+                <div>
+                    @foreach (var symptom in symptoms)
+                    {
+                        <MudChip Color="Color.Primary" Closable="true" OnClose="() => RemoveSymptom(symptom)">@symptom</MudChip>
+                    }
+                </div>
+            }
+
+            <MudFileUpload T="IBrowserFile" OnChange="UploadFiles">
+                <ButtonTemplate>
+                    <MudFab HtmlTag="label" Icon="@Icons.Material.Filled.AttachFile" />
+                </ButtonTemplate>
+            </MudFileUpload>
+
+            <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary" Type="submit">Add Eye Condition</MudButton>
+        </MudForm>
+    </MudContainer>
+</div>
+
+@code {
+    private EyeCondition condition = new EyeCondition();
+    private string symptomToAdd;
+    private List<string> symptoms = new List<string>();
+
+    private async Task UploadFiles(InputFileChangeEventArgs e)
+    {
+
+    }
+
+    private void AddSymptom()
+    {
+        if (!string.IsNullOrWhiteSpace(symptomToAdd))
+        {
+            symptoms.Add(symptomToAdd);
+            symptomToAdd = string.Empty;
+        }
+    }
+
+    private void AddCondition()
+    {
+    }
+
+    public class EyeCondition
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Treatment { get; set; }
+    }
+    private void RemoveSymptom(string symptom)
+    {
+        symptoms.Remove(symptom);
+
+    }
+}

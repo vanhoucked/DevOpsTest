@@ -1,0 +1,14 @@
+﻿@using Project.Shared.News;
+
+<div class="cardNews">
+    <MudCard>
+        <MudCardMedia Image=@News.Image Height="200" />
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@News.DatePosted</MudText>
+            <p>@News.Title</p>
+        </MudCardContent>
+        <MudCardActions>
+                <MudButton Variant="MudBlazor.Variant.Text" Color="Color.Primary" @onclick="NavigateToNews">Lees meer</MudButton>
+        </MudCardActions>
+    </MudCard>
+</div>

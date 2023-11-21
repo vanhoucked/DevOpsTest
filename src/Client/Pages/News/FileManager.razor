@@ -1,0 +1,12 @@
+﻿@page "/admin/image-upload"
+
+@inject IDialogService DialogService
+
+<MudButton @onclick="OpenDialog" Variant="MudBlazor.Variant.Filled" Color="Color.Primary">
+    Photos
+</MudButton>
+
+@if(selectedImagePath is not null)
+{
+    <MudImage Src="@selectedImagePath" Height="100" />
+}

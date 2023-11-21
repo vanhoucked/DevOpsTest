@@ -1,0 +1,66 @@
+﻿<MudFab Icon="@Icons.Material.Filled.Chat" Color="Color.Primary" Size="Size.Large" @onclick="ToggleChatbot" class="icon" />
+
+<div class="chatbot-container @chatbotHiddenClass">
+    <div class="chatbot-chat">
+        <div class="bot-message">
+            <span class="bot-avatar">🤖</span>
+            <span class="bot-text">Hello! How can I assist you today?</span>
+        </div>
+
+        <div class="user-message">
+            <span class="user-text">User choice: Option 1</span>
+        </div>
+    </div>
+
+    <div class="chatbot-options">
+        <button @onclick="HandleOption1">Option 1</button>
+        <button @onclick="HandleOption2">Option 2</button>
+    </div>
+
+    <button @onclick="ContactSupport">Contact Support</button>
+</div>
+
+@code {
+    private bool isChatbotVisible = false;
+
+    private string chatbotHiddenClass => isChatbotVisible ? string.Empty : "chatbot-hidden";
+
+    private List<string> botResponses = new List<string>
+{
+        "Hello! How can I assist you today?",
+        "What would you like to do next?",
+        "Please choose an option below.",
+        "How can I help you today?"
+    };
+
+    private void HandleOption1()
+    {
+        botResponses.Add("You selected Option 1. How can I further assist you?");
+    }
+
+    private void HandleOption2()
+    {
+        botResponses.Add("You selected Option 2. How can I further assist you?");
+    }
+
+    private void ContactSupport()
+    {
+        botResponses.Add("Please wait, connecting you to our support team.");
+    }
+
+    private string GetBotResponse()
+    {
+        if (botResponses.Count > 0)
+        {
+            string response = botResponses[0];
+            botResponses.RemoveAt(0);
+            return response;
+        }
+        return "How can I assist you today?";
+    }
+
+    private void ToggleChatbot()
+    {
+        isChatbotVisible = !isChatbotVisible;
+    }
+}

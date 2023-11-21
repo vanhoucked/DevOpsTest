@@ -1,0 +1,38 @@
+﻿@using Project.Shared.News;
+@using Project.Client.Pages.News
+@using Project.Client.Pages.News.Components
+
+
+@if (news is null)
+{
+    <p>Loading...</p>
+}
+else{
+    <div style="background-color:#ffffff; padding-top:1rem; padding-bottom:1rem">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            <div class="intro">
+                <h3>Laatste nieuwtjes</h3>
+                <p>Welkom bij de meest recente updates en belangrijke aankondigingen van onze praktijk. Hier houden we u op de hoogte van de laatste ontwikkelingen en nieuwsberichten die voor u van belang kunnen zijn. Blijf op de hoogte van nieuwe behandelingen, evenementen, en andere wetenswaardigheden die van invloed kunnen zijn op uw gezondheid en welzijn.</p>
+            </div>
+            <MudGrid Justify="Justify.SpaceEvenly" Style="margin-top:1rem; margin-bottom:1rem">
+                @foreach (var newsItem in news.Take(4))
+                {
+                    <CardNews News="newsItem" />
+                }
+            </MudGrid>
+        </MudContainer>
+    </div>
+}
+
+@code {
+    [Inject] public INewsService NewsService { get; set; }
+
+    private List<NewsDto.Index> news;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new NewsRequest.GetIndex();
+        var response = await NewsService.GetIndexAsync(request);
+        news = response.News;
+    }
+}

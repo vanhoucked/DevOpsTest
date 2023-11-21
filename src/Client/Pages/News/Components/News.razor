@@ -1,0 +1,165 @@
+﻿
+<div class="nieuws">
+<h2>Nieuws</h2>
+
+<div class="d-flex">
+    <div class="flex-grow-1 me-3">
+        <MudTextField @bind-Value="searchTerm" Label="Zoek op titel" FullWidth="true" @oninput="HandleSearch" />
+    </div>
+    @* <div>
+        <MudSelect T="string" Label="Categorie" AnchorOrigin="Origin.BottomCenter">
+            <MudSelectItem Value="@("Info over de praktijk")" />
+            <MudSelectItem Value="@("n")" />
+            <MudSelectItem Value="@("Ooglidcorrectie")" />
+        </MudSelect>
+    </div> *@
+</div>
+
+</div>
+
+
+<div class="card-container">
+
+
+
+    @foreach (var nieuwsartikel in GetFilteredNews())
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm) || nieuwsartikel.Titel.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+        {
+
+            <div class="card">
+                <MudCard Style="min-height:390px">
+                <MudCardMedia Image="https://picsum.photos/350/200" Height="200" />
+                <MudCardContent>
+                        <div><MudText Typo="Typo.caption">Geplaatst op: @nieuwsartikel.Date</MudText></div>
+                        <div><MudText Style="margin-top:15px" Typo="Typo.body1"> @nieuwsartikel.Titel</MudText></div>
+                   
+                    
+                </MudCardContent>
+                <div class="btn-meer-nieuws">
+                    <MudCardActions Style="position: absolute; bottom: 10px; right: 10px;">
+                            <MudButton Variant="MudBlazor.Variant.Text" Color="Color.Primary" Style="">Lees meer</MudButton>
+                    </MudCardActions>
+                </div>
+            </MudCard>
+            </div>
+            }
+        }
+   
+
+</div>
+
+@code{
+    private string searchTerm = "";
+
+    public List<NewsArticle> GetFilteredNews()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            return news;
+        }
+        else
+        {
+            return news.Where(a => a.Titel.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+    }
+
+    private void HandleSearch(ChangeEventArgs e)
+    {
+        searchTerm = e.Value.ToString();
+    }
+
+
+    public class NewsArticle
+    {
+        public int Id { get; set; }
+        public string Titel { get; set; }
+        public string DoctorName{ get; set; }
+        public string DoctorSpeciality { get; set; }
+        public string Content { get; set; }
+        public string Date{ get; set; }
+    }
+
+
+
+    //mockData
+
+    private List<NewsArticle> news = new List<NewsArticle>
+    {
+        new NewsArticle
+    {
+        Id = 1,
+        Titel = "Nieuw geneesmiddel ontdekt voor Staar",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Onderzoekers hebben onlangs een doorbraak gemaakt in de behandeling van staar. Een nieuw geneesmiddel is ontdekt dat de troebeling van de lens in het oog effectief kan verminderen.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 2,
+        Titel = "Oorzaken van Rode ogen en hoe ze te behandelen",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Rode ogen kunnen verschillende oorzaken hebben, van allergieën tot oogirritatie. In dit artikel bespreken we de mogelijke oorzaken en behandelingsopties voor rode ogen.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 3,
+        Titel = "Preventie en behandeling van Glaucoom",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Glaucoom is een ernstige oogaandoening die het gezichtsvermogen kan bedreigen. Lees meer over de preventie en behandeling van glaucoom in dit informatieve artikel.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 4,
+        Titel = "Nieuwe hoop voor Retinoblastoma-patiënten",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Voor kinderen die lijden aan retinoblastoma is er nieuwe hoop. Recente ontwikkelingen in de behandeling beloven betere overlevingskansen en een verbeterde kwaliteit van leven.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 5,
+        Titel = "Leven met Maculare degeneratie: Tips en advies",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Maculare degeneratie kan het dagelijks leven beïnvloeden. Dit artikel biedt nuttige tips en advies voor mensen die met deze aandoening leven.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 6,
+        Titel = "Nieuwe behandelingsopties voor Diabetische Retinopathie",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Diabetische retinopathie is een oogcomplicatie bij diabetespatiënten. Ontdek de nieuwste behandelingsopties en hoop voor mensen die hiermee te maken hebben.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 7,
+        Titel = "Oogzorgtips voor de zomermaanden",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "De zomer kan uitdagend zijn voor ooggezondheid. Leer hoe je je ogen beschermt tegen de zon en andere zomerse risico's.",
+        Date="13/04/23"
+    },
+    new NewsArticle
+    {
+        Id = 8,
+        Titel = "Nieuwe inzichten in Droge Ogen Syndroom",
+        DoctorName = "Anasio Claeys",
+        DoctorSpeciality = "Oogarts",
+        Content = "Droge ogen kunnen hinderlijk zijn. Ontdek de nieuwste inzichten en behandelingen voor dit veelvoorkomende oogprobleem.",
+        Date="13/04/23"
+    }
+    };
+
+
+    //
+}

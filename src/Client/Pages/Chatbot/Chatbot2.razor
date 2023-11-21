@@ -1,0 +1,43 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div class="open-button">
+    <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Chat" Size="Size.Large" @onclick="OpenChat" />
+</div>
+
+@if (isChatOpen)
+{
+    <div class="chat-popup" style="bottom: 95px;">
+        <div class="chat-header">
+            <div class="avatar-badge">
+                <MudAvatar Variant="MudBlazor.Variant.Outlined" Style="border-color: white">
+                    <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Large" Style="color: white" />
+                </MudAvatar>
+            </div>
+            <h4>Chatbot</h4>
+            <button class="close-button" @onclick="CloseChat">
+                <MudIcon Icon="@Icons.Material.Filled.Close" />
+            </button>
+        </div>
+        <div class="chat-content">
+            <div class="conversation">
+                @foreach (var message in chatMessages)
+                {
+                    <div class="message @(message.IsBotMessage ? "bot-message" : "user-message")">
+                        @((MarkupString)message.Text)
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="refresh-button">
+            <button class="refresh-button" @onclick="RefreshChat">
+                <MudIcon Icon="@Icons.Material.Filled.Refresh" Color="Color.Primary" />
+            </button>
+        </div>
+        <div class="choices">
+            @foreach (var choice in choices)
+            {
+                <button class="choice-button" @onclick="() => ChooseOption(choice)">@choice</button>
+            }
+        </div>
+    </div>
+}

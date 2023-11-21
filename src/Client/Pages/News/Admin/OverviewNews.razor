@@ -1,0 +1,48 @@
+﻿@page "/admin/nieuws"
+@using Project.Shared.News
+
+@if(News is null)
+{
+    <p>Loading... </p>
+}
+else
+{
+    <div class="d-flex justify-space-between align-center mt-2 mb-5">
+        <div>
+            <h1>Title</h1>
+        </div>
+        <div>
+            <MudButton Class="pl-4" Variant="MudBlazor.Variant.Filled" OnClick="(() => NavigateToCreate())" Color="Color.Primary">Nieuws Aanmaken</MudButton>
+        </div>
+    </div>
+
+    <MudTable Items="@News" Dense="@dense" Hover="@hover" Bordered="@bordered" Striped="@striped" Filter="new Func<NewsDto.Index,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1" Class="mb-5">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Nieuws artikelen</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Nr</MudTh>
+            <MudTh>Titel</MudTh>
+            <MudTh>Voornaam Autheur</MudTh>
+            <MudTh>Achternaam Autheur</MudTh>
+            <MudTh>Geplaatst op</MudTh>
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nr">@context.Id</MudTd>
+            <MudTd DataLabel="Titel">@context.Title</MudTd>
+            <MudTd DataLabel="Voornaam Autheur">@context.Author?.FirstName</MudTd>
+            <MudTd DataLabel="Achternaam Autheur">@context.Author?.LastName</MudTd>
+            <MudTd DataLabel="geplaatst mass">@context.DatePosted</MudTd>
+            <MudTd DataLabel="">
+                <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" Class="me-3"/>
+                <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+}

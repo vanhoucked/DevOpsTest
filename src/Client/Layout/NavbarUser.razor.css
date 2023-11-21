@@ -1,0 +1,181 @@
+﻿ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.navlink {
+    text-decoration: none;
+    /*color: #26C6DA;*/
+    color: white;
+}
+
+    /*.navlink:hover {
+        text-decoration: none;
+        color: #00B8D4
+    }*/
+
+/* Styles for the navigation bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /* Ensure it's above other content */
+    background-color: #0a6873;
+    border-bottom: 5px solid #2dc3d6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 90px;
+    transition: background-color 0.3s;
+}
+
+
+/* Styles for the logo */
+.logo img {
+    height: 40px; /* Adjust the height as needed */
+}
+
+/* Styles for the navigation links */
+.nav-links {
+    display: flex;
+    text-align: center;
+    margin-right:60px; /*dit zorgt voor de margin right*/
+}
+
+    .nav-links li {
+        margin-right: 20px; /* Adjust the spacing between links as needed */
+    }
+
+        .nav-links li:last-child {
+            margin-right: 0; /* Remove the margin from the last link */
+        }
+
+/* Styles for the dropdown */
+/* Styles for the dropdown */
+/*.dropdown {
+    position: relative;
+    text-align: center;*/ /* Voeg deze regel toe om de tekst in het dropdownmenu centraal te plaatsen */
+/*}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;*/ /* Plaats het dropdownmenu in het midden van de ouder (horizontaal) */
+    /*transform: translateX(-50%);*/ /* Verschuif het dropdownmenu naar links om het volledig gecentreerd te krijgen */
+    /*background-color: #00ACC1;*/ /* Change the background color to your desired color */
+    /*z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}*/
+
+/* Styles for the links in the dropdown */
+/*.dropdown-content a {
+    padding: 10px;
+    display: block;
+    color: #fff;*/ /* Change the text color to your desired color */
+    /*padding-left: 25px;
+    padding-right: 25px;
+}*/
+
+    /* Hover styles for the links in the dropdown */
+    /*.dropdown-content a:hover {
+        color: #00838F;*/ /* Change the background color on hover to your desired color */
+    /*}*/
+
+#navLink {
+    position: relative;
+    text-decoration: none;
+}
+
+    #navLink:hover {
+        color: white;
+    }
+
+    #navLink::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+    }
+
+    #navLink:hover::before {
+        transform: scaleX(1);
+    }
+
+
+.logo {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    margin-left: 60px; /*dit zorgt voor de margin left*/
+}
+
+/*    .logo:hover {
+        color: white;
+    }*/
+
+/* Hamburger menu styles */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center; /* Voeg deze regel toe om de items centraal te plaatsen */
+    cursor: pointer;
+    margin-right:30px;
+}
+
+    .menu-toggle span {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.4s;
+    }
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navlink {
+        color: #0a6873;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust this to control the distance from the top */
+        left: 0;
+        width: 100%;
+        background-color: #E0F7FA;
+        margin-top: 30px;
+        z-index: 1;
+    }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 10px 0; /* Adjust this to control the spacing between links */
+        }
+
+    .dropdown-content {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}

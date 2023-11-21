@@ -1,0 +1,50 @@
+﻿@page "/admin/create-nieuws"
+@using Blazored.TextEditor
+@inject IDialogService DialogService
+
+@if(categories is null)
+{
+    <p>Loading...</p>
+}
+
+<MudForm Model="newsArticle">
+    <MudTextField Label="Title" @bind-Value="newsArticle.Title" />
+    <MudSelect Label="Category" @bind-Value="newsArticle.Category" Required="true">
+        @foreach (var category in categories!)
+        {
+            <MudSelectItem Value="category.Name" Label="category.Name" />
+        }
+    </MudSelect>
+    <BlazoredTextEditor @ref="@QuillHtml">
+            <ToolbarContent>
+                <select class="ql-header">
+                    <option selected=""></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                </select>
+                <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+                <span class="ql-formats">
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-list" value="ordered"></button>
+                    <button class="ql-list" value="bullet"></button>
+                </span>
+                <span>
+                    <MudButton @onclick="OpenDialog" Variant="MudBlazor.Variant.Filled" Color="Color.Primary">
+                        Photos
+                    </MudButton>
+                </span>
+            </ToolbarContent>
+        </BlazoredTextEditor>
+    <MudButton OnClick="(() => CreateNewsArticle())" Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" Type="submit">Submit</MudButton>
+</MudForm>

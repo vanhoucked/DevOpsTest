@@ -1,0 +1,81 @@
+.border-top {
+    border-top: 2px solid black;
+    background-color: #0a6873;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    height: 100%; /* Voeg hoogte toe om de container te vullen */
+    
+}
+
+.text-base {
+    font-size: 1rem;
+
+}
+
+.text-center {
+    text-align: center;
+
+}
+
+.text-black {
+   color:white;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Voeg hoogte toe om de footer te vullen */
+}
+
+.footer-left {
+    text-align: center; /* De tekst blijft in het midden van de footer */
+}
+
+.footer-right {
+    text-align: center; /* De iconen blijven in het midden van de footer */
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Hiermee worden de iconen in het midden van de footer uitgelijnd */
+}
+
+    .social-links li {
+        margin-left: 20px;
+    }
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Plaats de elementen boven elkaar */
+    }
+
+    .footer-left,
+    .footer-right {
+        text-align: center; /* Zorg ervoor dat tekst en iconen gecentreerd zijn */
+    }
+
+    .social-links {
+        flex-direction: row; /* Plaats de iconen naast elkaar */
+        margin-top: 10px; /* Voeg wat ruimte toe tussen tekst en iconen */
+    }
+
+        .social-links li {
+            margin: 0 10px; /* Voeg ruimte toe tussen de iconen */
+        }
+}

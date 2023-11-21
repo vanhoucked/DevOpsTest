@@ -1,0 +1,178 @@
+﻿@page "/aandoeningDetails/{id:int}"
+@using MudBlazor
+@layout MainLayout
+
+<div class="container mt-6">
+    @if (condition != null)
+    {
+        <MudText Typo="Typo.h2" Class="mb-4">Detail @(condition?.Aandoening)</MudText>
+        <div class="condition-card row mb-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="mudcar">
+                        <div class="mudcar">
+                            <MudCarousel ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object" Style="max-width:100%; min-height:400px;">
+                                @foreach (var foto in condition.Fotos)
+                                {
+                                    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                                        <img src="@foto" class="rounded img-fluid fill-image" alt="@condition.Aandoening" />
+                                    </MudCarouselItem>
+                                }
+                            </MudCarousel>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="text-left">
+                        <h2 class="mb-3">@condition.Aandoening</h2>
+                        <p>@condition.Beschrijving</p>
+                        <MudButton Variant="MudBlazor.Variant.Text" Color="Color.Primary" @onclick="ToggleSymptoms">
+                            @(showSymptoms ? "Verberg Symptomen" : "Toon Symptomen")
+                        </MudButton>
+                        @if (showSymptoms)
+                        {
+                            <h4 class="mt-4">Symptomen:</h4>
+                            <div class="row">
+                                @for (int i = 0; i < condition.Symptomen.Count; i += 2)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="dot" style="padding-right: 5px;">&#8226;</span>
+                                            <span>@condition.Symptomen[i]</span>
+                                        </div>
+                                        @if (i + 1 < condition.Symptomen.Count)
+                                        {
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="dot" style="padding-right: 5px;">&#8226;</span>
+                                                <span>@condition.Symptomen[i + 1]</span>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h2 class="mb-3 mt-5">Behandelingen voor @condition.Aandoening</h2>
+                <p>@condition.Behandeling</p>
+            </div>
+        </div>
+    } else {
+    <p class="text-danger">Condition not found.</p>
+    }
+</div>
+
+@code {
+    public class Condition
+    {
+        public int Id { get; set; }
+        public List<string> Fotos { get; set; }
+        public string Aandoening { get; set; }
+        public string Beschrijving { get; set; }
+        public string Behandeling { get; set; }
+        public List<string> Symptomen { get; set; }
+    }
+
+    private List<Condition> conditions = new List<Condition>
+    {
+    new Condition
+    {
+        Id = 1,
+        Fotos = new List<string> { "https://picsum.photos/600/375?random=1", "https://picsum.photos/600/375?random=2", "https://picsum.photos/600/375?random=3"},
+        Aandoening = "Staar",
+        Beschrijving = "Een staar is een troebeling van de lens in het oog. Dit kan leiden tot wazig zien, vervormd zien en lichtschuwheid. Staar komt vaker voor bij ouderen, maar kan ook bij jongere mensen voorkomen.",
+        Symptomen = new List<string>
+    {
+            "Wazig zien",
+            "Vervormd zien",
+            "Lichtschuwheid"
+        },
+        Behandeling = "De behandeling voor staar is chirurgische verwijdering van de troebele lens en vervanging ervan door een kunstlens."
+    },
+    new Condition
+    {
+        Id = 2,
+        Fotos = new List<string> { "https://picsum.photos/600/375?random=1", "https://picsum.photos/600/375?random=2", "https://picsum.photos/600/375?random=3"},
+        Aandoening = "Rode ogen",
+        Beschrijving = "Rode ogen kunnen worden veroorzaakt door een verscheidenheid aan factoren, waaronder vermoeidheid, allergieën, infecties en oogirritatie. In de meeste gevallen zijn rode ogen onschadelijk en verdwijnen ze vanzelf.",
+        Symptomen = new List<string>
+    {
+            "Rode ogen",
+            "Jeukende ogen",
+            "Branderig gevoel"
+        },
+        Behandeling = "De behandeling voor rode ogen hangt af van de oorzaak en kan variëren van oogdruppels tot rust en hydratatie."
+    },
+    new Condition
+    {
+        Id = 3,
+        Fotos = new List<string> { "https://picsum.photos/600/375?random=1", "https://picsum.photos/600/375?random=2", "https://picsum.photos/600/375?random=3"},
+        Aandoening = "Glaucoom",
+        Beschrijving = "Glaucoom is een oogaandoening die het gezichtsvermogen kan beschadigen. Glaucoom wordt veroorzaakt door een verhoogde druk in het oog. Dit kan de zenuwen in het oog beschadigen, wat kan leiden tot blindheid.",
+        Symptomen = new List<string>
+    {
+            "Verhoogde oogdruk",
+            "Gezichtsveldverlies",
+            "Hoofdpijn"
+        },
+        Behandeling = "De behandeling voor glaucoom omvat meestal oogdruppels, laserbehandelingen en in sommige gevallen chirurgie om de oogdruk te verlagen."
+    },
+    new Condition
+    {
+        Id = 4,
+        Fotos = new List<string> { "https://picsum.photos/600/375?random=1", "https://picsum.photos/600/375?random=2", "https://picsum.photos/600/375?random=3"},
+        Aandoening = "Retinoblastoma",
+        Beschrijving = "Retinoblastoma is een zeldzame vorm van kanker die begint in de retina, het lichtgevoelige weefsel aan de achterkant van het oog. Retinoblastoma komt meestal voor bij kinderen jonger dan 5 jaar.",
+        Symptomen = new List<string>
+    {
+            "Witachtige pupil",
+            "Oogpijn",
+            "Strabismus (scheelzien)"
+        },
+        Behandeling = "De behandeling voor retinoblastoma omvat meestal chirurgie, chemotherapie en/of bestraling, afhankelijk van de uitgebreidheid van de tumor."
+    },
+    new Condition
+    {
+        Id = 5,
+        Fotos = new List<string> { "https://picsum.photos/600/375?random=1", "https://picsum.photos/600/375?random=2", "https://picsum.photos/450/375?random=3"},
+        Aandoening = "Maculare degeneratie",
+        Beschrijving = "Maculare degeneratie is een oogaandoering die het centrale deel van het netvlies, de macula, aantast. Dit kan leiden tot wazig zien, vervormd zien en moeite met lezen en autorijden.",
+        Symptomen = new List<string>
+    {
+            "Wazig zien",
+            "Vervormd zien",
+            "Moeite met lezen"
+        },
+        Behandeling = "De behandeling voor maculare degeneratie omvat regelmatige controle door een oogarts, voedingssupplementen en in sommige gevallen injecties in het oog."
+    }
+};
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+    private Condition condition;
+    private bool showSymptoms = false;
+
+    protected override void OnInitialized()
+    {
+        condition = GetConditionById(Id);
+    }
+
+    private Condition GetConditionById(int id)
+    {
+        return conditions.Find(c => c.Id == id);
+    }
+
+    private void ToggleSymptoms()
+    {
+        showSymptoms = !showSymptoms;
+    }
+    }

@@ -1,0 +1,23 @@
+﻿@page "/admin/edit-nieuws/{newsId}"
+
+@if (categories is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <MudForm Model="this">
+        <MudTextField Label="Title" @bind-Value="Title" Required="true" />
+
+        <MudSelect Label="Category" @bind-Value="Category" Required="true">
+            @foreach (var category in categories)
+            {
+                <MudSelectItem Value="category.Name" Label="category.Name" />
+            }
+        </MudSelect>
+
+        <MudTextField Label="Content" @bind-Value="Content" Multiline="true" Required="true" />
+
+        <MudButton OnClick="(() => OnSubmit())" Variant="MudBlazor.Variant.Outlined" Color="Color.Primary" Class="mt-3" Type="submit">Submit</MudButton>
+    </MudForm>
+}

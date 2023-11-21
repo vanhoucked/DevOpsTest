@@ -1,0 +1,58 @@
+﻿@page "/nieuws/{Id:int}"
+@using Project.Shared.News
+
+<div class="container mt-6">
+    @if (News is null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <div class="container" style="margin-top:160px">
+            <div class="article">
+                <h1>@News.Title</h1>
+                <p>@News.NewsText</p>
+            </div>
+            <div class="sidebar">
+                <div>
+                    <h5>Geschreven door @News.Author.FirstName @News.Author.LastName</h5>
+                    <p>Geplaatst op: @News.DatePosted</p>
+                </div>
+                <div>
+                    <div>
+                        <h5 class="links">Andere Links</h5>
+                        <ul class="links-items">
+                            <li><NavLink href="#">Info over de praktijk</NavLink></li>
+                            <li><NavLink href="#">Nieuwe behandelingen</NavLink></li>
+                            <li><NavLink href="#">Verzekeringen en betalingen</NavLink></li>
+                            <li><NavLink href="#">Veel gestelde vragen (FAQ)</NavLink></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5 class="links">Recente nieuwsartikelen</h5>
+                        <ul class="links-items">
+                            @if (LatestNews is null)
+                            {
+                                <li>Loading...</li>
+                            }
+                            else
+                            {
+                                @foreach (var newsItem in LatestNews)
+                                {
+                                    <li><NavLink href="@($"nieuws/{newsItem.Id}")">@newsItem.Title</NavLink></li>
+                                }
+                            }
+                        </ul>
+
+                    </div>
+                    <div>
+                        <button class="btn-return" @onclick="NavigateToNews">Terug naar nieuwspagina</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

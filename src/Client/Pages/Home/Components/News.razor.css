@@ -1,0 +1,9 @@
+﻿.intro {
+    max-width: 60%; /* Voeg hier de gewenste maximale breedte in pixels of een andere eenheid toe */
+    margin: 0 auto 2rem auto; /* Hiermee wordt de div horizontaal gecentreerd op de pagina */
+    text-align: center; /* Hiermee wordt de tekst binnen de div gecentreerd */
+}
+.btn-meer-nieuws {
+    display: flex;
+    justify-content: flex-end;
+}

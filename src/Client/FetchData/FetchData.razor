@@ -1,0 +1,13 @@
+﻿@inject HttpClient Http
+@using Project.Shared.News
+
+@code{
+    private NewsDto.Index[]? newsArticles;
+    protected override async Task OnInitializedAsync()
+    {
+        newsArticles = await Http.GetFromJsonAsync<NewsDto.Index[]>
+        (
+            "api/news" // Web API endpoint name 
+        );
+    }
+}

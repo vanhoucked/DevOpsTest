@@ -1,0 +1,56 @@
+﻿@page "/"
+@using Project.Client.Pages.Home.Components
+@inject NavigationManager NavigationManager
+
+<!-- The title of the page. -->
+<PageTitle>Home</PageTitle>
+
+<!-- A placeholder for a carousel component. -->
+<Carousel />
+<!-- A MudContainer to contain the following MudGrid. -->
+<MudContainer>
+    <!-- MudGrid with justified spacing and top/bottom margins -->
+    <MudGrid Justify="Justify.SpaceEvenly" Style="margin-top:1rem; margin-bottom:1rem">
+
+        <div class="cardHome">
+            <h2>Oogaandoeningen</h2>
+            <p>Lees meer over de meest voorkomende oogaandoeningen.</p>
+            <NavLink href="#team" class="buttonHome">Vind meer</NavLink>
+        </div>
+
+        <div class="cardHome">
+            <h2>Afspraak?</h2>
+            <p data-test-id="tester">
+                Maak een afspraak of bel ons op <br />
+                +32 2 427 59 85
+            </p>
+            <p>
+                Ma-Vr	9u - 12u en 13u - 17u <br />
+                Zat-Zon	Gesloten
+            </p>
+            <NavLink href="#team" class="buttonHome">Afspraak maken</NavLink>
+        </div>
+
+        <div class="cardHome">
+            <h2>Ons Team</h2>
+            <p>Gepersonaliseerde behandeling met uitstekende resultaten.</p>
+            <NavLink href="#team" class="buttonHome">Ontmoet het team</NavLink>
+        </div>
+
+    </MudGrid>
+</MudContainer>
+
+
+<!-- A custom component for displaying information about eye disorders. -->
+<EyeDisorder/>
+<!-- A custom component for displaying news. -->
+<News />
+
+@code {
+    private void NavigateToAfspraakPage()
+    {
+        NavigationManager.NavigateTo("/Afspraak");
+    }
+
+
+}

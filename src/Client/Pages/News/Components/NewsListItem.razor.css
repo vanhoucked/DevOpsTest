@@ -1,0 +1,12 @@
+.card{
+    margin-bottom:10px;
+}
+
+.btn-meer-nieuws {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nieuws{
+    margin-top:60px;
+}

@@ -1,0 +1,56 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+
+
+<MudThemeProvider Theme="MyCustomTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+@if (currentPath.StartsWith("admin") )
+{
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <div class="page">
+                <div class="sidebar">
+                    <NavbarAdmin />
+                </div>
+
+                <main>
+@*                     @foreach (var claim in context.User.Claims)
+                    {
+                        <p>@claim.Type - @claim.Value</p>
+                    } *@
+                    <article class="content px-4">
+                        @Body
+                    </article>
+                </main>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <div>
+                <p>You are not authorized to access this page.</p>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+}
+else
+{
+    <MudLayout>
+        <div class="App">
+            <div>
+                <NavbarUser />
+            </div>
+
+            <div>
+                @Body
+                <Project.Client.Pages.Chatbot.Chatbot2 />
+            </div>
+
+            <div class="App-footer">
+                <Footer />
+            </div>
+        </div>
+    </MudLayout>
+}

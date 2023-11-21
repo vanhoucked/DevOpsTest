@@ -1,0 +1,26 @@
+﻿<nav class="navbar">
+    <div>
+        <NavLink class="logo" href="#">Vision</NavLink>
+    </div>
+    <div class="menu-toggle" @onclick=" ToggleMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <ul class="nav-links @((isMenuOpen) ? "active" : "")">
+        <li><NavLink class="navlink" href="/">Home</NavLink></li>
+        <li><NavLink class="navlink" href="/nieuws">Nieuws</NavLink></li>
+        <li><NavLink class="navlink" href="/oogaandoening">Oogaandoening</NavLink></li>
+        <li><NavLink class="navlink" href="/overons">Over ons</NavLink></li>
+        <li><NavLink class="navlink" href="/ContactPage">Contact</NavLink></li>
+
+        @* <li class="dropdown" @onclick="ToggleDropdown">
+            <a style="cursor: pointer;" class="navlink">Over ons<MudIcon Icon="@Icons.Material.Filled.ArrowDropDown" /> </a>
+            <div class="dropdown-content" @onclick="CloseDropdown" style="display: @(isDropdownOpen ? "block" : "none")">
+                <a href="/afspraak" style="border-bottom:3px solid black">Afspraak</a>
+                <a href="/kweetnie">kweetnie</a>
+            </div>
+        </li> *@
+    </ul>
+</nav>
+

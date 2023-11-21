@@ -1,0 +1,59 @@
+﻿<div class="containerStyle">
+    <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+        <div class="intro" style="text-align: center;">
+            <h3>Voorkomende oogaandoeningen</h3>
+            <p>Ontdek hieronder een wereld van mogelijkheden voor gezonde ogen. Leer meer over veelvoorkomende oogaandoeningen, tips voor oogverzorging en hoe je je zicht kunt behouden. Onze toegewijde experts staan klaar om je te begeleiden op je reis naar een helder en scherp zicht.</p>
+        </div>
+        <MudGrid Justify="Justify.SpaceEvenly" Style="margin-top:1rem; margin-bottom:1rem">
+            @foreach (var eyeCondition in EyeConditions)
+            {
+                <div class="MudItem">
+                    <div class="MudCard" style="min-width: 18rem; max-width: 22rem;">
+                        <div class="MudCardMedia">
+                            <img src="@eyeCondition.ImageUrl" alt="Image" class="image-fit" />
+                        </div>
+                        <div class="MudCardContent" style="min-height: 4rem; max-height: 6rem;">
+                            <h5 class="MudTextTitle">@eyeCondition.Title</h5>
+                            <p class="MudText">@eyeCondition.Description</p>
+                        </div>
+                        <div class="MudCardActions">
+                            <MudButton Variant="MudBlazor.Variant.Filled" Color="Color.Primary">Meer info</MudButton>
+                        </div>
+                    </div>
+                </div>
+            }
+        </MudGrid>
+    </MudContainer>
+</div>
+
+
+@code {
+    private List<EyeCondition> EyeConditions = new List<EyeCondition>
+    {
+        new EyeCondition
+        {
+            Title = "Glaucoom",
+            Description = "Glaucoom is een oogaandoening die schade aan de oogzenuw veroorzaakt.",
+            ImageUrl = "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80"
+        },
+        new EyeCondition
+        {
+            Title = "Cataract",
+            Description = "Een cataract is een vertroebeling van de ooglens die het zicht belemmert.",
+            ImageUrl = "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80"
+        },
+        new EyeCondition
+        {
+            Title = "Droge ogen",
+            Description = "Droge ogen veroorzaken ongemak en irritatie van het oogoppervlak.",
+            ImageUrl = "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80"
+        }
+    };
+
+    private class EyeCondition
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+    }
+}

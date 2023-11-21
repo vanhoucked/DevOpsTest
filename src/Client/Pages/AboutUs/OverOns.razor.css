@@ -1,0 +1,44 @@
+.doctor-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+
+
+
+/*
+    hieronder is voor google maps
+*/
+
+.team {
+    margin-top: 7rem;
+    margin-bottom: 1rem;
+}
+
+.doctor-card {
+    margin-bottom: 25px; 
+    
+}
+
+iframe {
+    justify-content: center;
+    width: 80%;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+.map-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.adres-text {
+    margin-bottom: 20px;
+}

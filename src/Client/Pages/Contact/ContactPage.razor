@@ -1,0 +1,108 @@
+﻿@page "/ContactPage"
+@using Project.Client.Pages.Contact
+@using FluentValidation
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+@using System.Net.Mail
+@using MudBlazor
+@using Project.Client.Service
+@using Project.Shared.Companies
+@using Project.Shared.Emails
+
+
+
+
+
+<div class="container">
+    <div class="card-container">
+        <MudItem>
+        <MudGrid>
+            <MudItem xs="12" sm="7">
+                <MudPaper Class="pa-4">
+                    <h2>Contacteer ons:</h2>
+                        <MudForm class="form-contact" Model="@contact">
+                        <MudTextField T="string" Label="Voornaam" Required="true" RequiredError="Voornaam is verplicht" @bind-Value="contact.Voornaam"/>
+                            <MudTextField T="string" Label="Naam" Required="true" RequiredError="Naam is verplicht" @bind-Value="contact.Naam" />
+                            <MudTextField T="string" Label="E-mail" Required="true" RequiredError="E-mail is verplicht" @bind-Value="contact.Email" />
+                            <MudTextField T="string" Label="Opmerking of vraag" Variant="MudBlazor.Variant.Text" Lines="5" Required="true" RequiredError="Opmerking of vraag is verplicht" @bind-Value="contact.Message" />
+                    </MudForm>
+                </MudPaper>
+                    <MudPaper Class="pa-4 mt-4" style="display: flex; justify-content: center; align-items: center;">
+                        <MudButton Class="mud-button-lg" Variant="MudBlazor.Variant.Filled" Color="Color.Primary" DisableElevation="true" @onclick="() => HandleValidSubmit()">Verzend</MudButton>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="5">
+                <MudPaper Class="pa-4 mud-height-full">
+                    <h2>Info:</h2>
+                        <MudList>
+                            <MudListItem Avatar="@Icons.Material.Filled.LocationOn">
+                                @company.Adress
+                            </MudListItem>
+                            <MudListItem></MudListItem>
+                            <MudListItem Avatar="@Icons.Material.Filled.AddIcCall">
+                                @company.PhoneNumber
+                            </MudListItem>
+                            <MudListItem></MudListItem>
+                            <MudListItem Avatar="@Icons.Material.Filled.Email">
+                                @company.Email
+                            </MudListItem>
+                            <MudListItem></MudListItem>
+                            <MudListItem Avatar="@Icons.Material.Filled.Fax">
+                                @company.Fax
+                            </MudListItem>
+                        </MudList>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="18" sm="12">
+                <MudPaper Class="pa-4 ma-4">
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2182.286972568293!2d3.7788804565820606!3d51.07543695298512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c376fd48f2d687%3A0x1773eb5790d0402b!2sAntwerpsesteenweg%201022%2C%209040%20Gent!5e0!3m2!1sen!2sbe!4v1699436001270!5m2!1sen!2sbe"
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                </MudPaper>
+            </MudItem>  
+
+        </MudGrid>
+        </MudItem>
+
+    </div>
+</div>
+
+
+
+@code {
+    private string message = string.Empty;
+    private ContactDto.Detail contact = new ContactDto.Detail();
+
+    [Inject] private IEmailService EmailService { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        bool response = await EmailService.SendEmail(contact);
+        if (response)
+        {
+            message = "Message sent!";
+        }
+        else
+        {
+            message = "There was an error sending the message";
+        }
+    }
+
+
+    private CompanyDTO.Detail company = new CompanyDTO.Detail();
+
+    [Inject] private ICompanyService contactService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await contactService.GetDetailAsync();
+        company = response.Company;
+
+    }
+}
+
+
+
+
+

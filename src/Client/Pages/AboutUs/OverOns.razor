@@ -1,0 +1,60 @@
+﻿@page "/overons"
+@using Project.Client.Pages.Contact
+@using Project.Client.Pages.AboutUs.Components
+@using FluentValidation
+@using MudBlazor
+@using Project.Shared.Doctors
+@inject NavigationManager NavigationManager
+
+<PageTitle>Contact</PageTitle>
+
+<MudContainer>
+    <div class="team">
+        <MudText Typo="Typo.h3">Ons Team</MudText>
+    </div>
+    <div class="doctor-card-container">
+
+        @if (Doctors.Count == 0)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            @foreach (var doctor in Doctors)
+            {
+                <div @onclick="() => NavigateToDetail(doctor.Id)">
+                    <DoctorCard Doctor="doctor"/>
+                </div>
+            }
+        }
+
+    </div>
+</MudContainer>
+
+<div class="map-container">
+    <div class="adres-text">
+        <MudText Typo="Typo.h3">Adres</MudText>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2182.286972568293!2d3.7788804565820606!3d51.07543695298512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c376fd48f2d687%3A0x1773eb5790d0402b!2sAntwerpsesteenweg%201022%2C%209040%20Gent!5e0!3m2!1sen!2sbe!4v1699436001270!5m2!1sen!2sbe"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+@code {
+    private List<DoctorDTO.Index> Doctors = new List<DoctorDTO.Index>();
+
+    [Inject] private IDoctorService DoctorService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new DoctorRequest.GetIndex();
+        var response = await DoctorService.GetIndexAsync(request);
+        Doctors = response.Doctors;
+
+    }
+
+    private void NavigateToDetail (int DoctorId)
+    {
+        NavigationManager.NavigateTo($"/overons/doctor/{DoctorId}");
+    }
+
+}

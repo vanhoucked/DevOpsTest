@@ -1,0 +1,33 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    /* Stel de gewenste grid-template-columns in op basis van je schermgrootte */
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.card{
+    margin-bottom:10px;
+}
+
+.btn-meer-nieuws {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.nieuws{
+    margin-top:60px;
+}

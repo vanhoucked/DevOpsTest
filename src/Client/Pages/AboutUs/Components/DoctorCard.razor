@@ -1,0 +1,19 @@
+﻿@using MudBlazor
+@using Project.Shared.Doctors
+
+
+<div class="docCard">
+    <div class="doctorNaam">
+        <p> @Doctor.FirstName  @Doctor.LastName</p>
+    </div>
+    <div class="picture">
+        <img src="https://firebasestorage.googleapis.com/v0/b/webservices-film.appspot.com/o/Eyedoctor%201661432441.jpg?alt=media&token=c5ab0b17-7355-4a86-826a-9b238441847f&_gl=1*10qfoz2*_ga*NTQ4NjI1NzE4LjE2OTg5MjA2NjA.*_ga_CW55HF8NVT*MTY5ODkyMDY1OS4x.lj.eu.mty5odkymdg3os42mc4w.lj." alt="Doctor" />
+    </div>
+    <div class="oogarts">
+        <p>Oogarts</p>
+    </div>
+    <p class="doctorInfo">
+
+        @Doctor.Specialization
+    </p>
+</div>

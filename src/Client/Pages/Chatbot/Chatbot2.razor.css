@@ -1,0 +1,88 @@
+﻿/* Add your own styling here */
+.open-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+}
+
+.chat-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; /* Updated to column layout */
+}
+
+.chat-header {
+    background-color: #0a6873;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-content {
+    padding: 10px;
+    flex: 1; /* Allow chat-content to take up remaining space */
+    overflow-y: auto; /* Add overflow-y for scrolling */
+}
+
+.conversation {
+    margin-bottom: 10px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+
+.user-message {
+    background-color: #b8d9de;
+    text-align: right;
+    color: #0a6873;
+}
+
+.bot-message {
+    background-color: #3ba5b3;
+    text-align: left;
+    color:white;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto; 
+    width: 100%;
+}
+
+.choice-button {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #79cad4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.choice-button:hover {
+    background-color: #3ba5b3;
+}

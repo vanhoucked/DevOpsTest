@@ -1,0 +1,27 @@
+﻿@page "/overons/doctor/{Id:int}"
+@using Project.Shared.Doctors
+
+<div>
+    @if (Doctor != null)
+    {
+        <div class="naam">
+            <h3>@Doctor.FirstName @Doctor.LastName</h3>
+            <img src="@Doctor.Image" />
+        </div>
+
+        <div></div>
+        <p>@Doctor.Specialization</p>
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+
+    <div>
+        <button @onclick="NavigateToDoctor">Terug naar Over Ons</button>
+    </div>
+</div>
+
+
+    
+

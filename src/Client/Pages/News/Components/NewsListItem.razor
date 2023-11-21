@@ -1,0 +1,21 @@
+﻿@using Project.Shared.News
+@using System.Diagnostics
+
+<div class="card-container">
+    <div class="card">
+        <MudCard Style="min-height:390px">
+            <MudCardMedia Image=@NewsArticle.Image Height="200" />
+            <MudCardContent>
+                <div><MudText Typo="Typo.caption">Geplaatst op: @NewsArticle.DatePosted</MudText></div>
+                <div><MudText Style="margin-top:15px" Typo="Typo.body1"> @NewsArticle.Title</MudText></div>
+
+
+            </MudCardContent>
+        <div class="btn-meer-nieuws">
+                <MudCardActions Style="position: absolute; bottom: 10px; right: 10px;">
+                    <MudButton Variant="MudBlazor.Variant.Text" Color="Color.Primary" Style="" @onclick="NavigateToNews">Lees meer</MudButton>
+                </MudCardActions>
+            </div>
+        </MudCard>
+    </div>
+</div>

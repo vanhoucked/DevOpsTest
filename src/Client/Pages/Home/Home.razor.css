@@ -1,0 +1,59 @@
+﻿body {
+}
+
+.custom-card {
+    min-height: 300px;
+    min-width: 300px;
+}
+
+
+.itemCardContent {
+    min-height: 8rem;
+    min-width: 8rem;
+}
+
+.itemCard {
+    min-width: 24rem;
+    max-width: 24rem;
+    background-color: #E0F7FA !important;
+}
+
+.cardHome {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+.buttonHome {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    text-decoration: none;
+    background-color: #00bcd4; /* Cyan tint */
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+    .buttonHome:hover {
+        background-color: #0097a7; /* Donkere cyan tint bij hover */
+        opacity: 0.9;
+    }
+
+@media (max-width: 600px) {
+    .cardHome {
+    max-width: 300px;
+    }
+}

@@ -1,0 +1,34 @@
+@page "/nieuws"
+@using Project.Client.Pages.News.Components
+
+@if (newsArticles is null)
+{
+    <p>Loading...</p>
+} else {
+    <MudContainer>
+        <Categories/>
+        <div class="nieuws">
+            <h2>Nieuws</h2>
+
+            <div class="d-flex">
+                <div class="flex-grow-1 me-3">
+                    <MudTextField @bind-Value="searchTerm" Label="Zoek op titel" FullWidth="true" @oninput="HandleSearch" />
+                </div>
+                @* <div>
+                <MudSelect T="string" Label="Categorie" AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("Info over de praktijk")" />
+                <MudSelectItem Value="@("n")" />
+                <MudSelectItem Value="@("Ooglidcorrectie")" />
+                </MudSelect>
+                </div> *@
+            </div>
+            <div class="card-container">
+                @foreach (var item in newsArticles)
+                {
+                        <NewsListItem NewsArticle="item" />
+                }
+            </div>
+        </div>
+    
+    </MudContainer>
+}
