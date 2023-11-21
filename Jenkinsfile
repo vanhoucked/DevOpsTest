@@ -38,6 +38,7 @@ pipeline {
                 def port = "3000"
 
                 sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}"
+                }
             }
         }
     }
@@ -51,6 +52,5 @@ pipeline {
             }
         }
     }
-}
 
 }
