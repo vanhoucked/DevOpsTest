@@ -39,7 +39,6 @@ pipeline {
             }
             steps {
                 script {
-                    sh "sudo yum install sshpass -y"
                     sh "docker save -o ${dockerImageFile} ${dockerImage}"
                     sh "sshpass -p ${remote_password} scp -o StrictHostKeyChecking=no ${dockerImageFile} ${remote_username}@${remote_ip}:/vagrant/"
                 }
