@@ -9,17 +9,6 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                script {
-                    def dotnetCommand = "dotnet"
-                    def buildCommand = "${dotnetCommand} build"
-                    
-                    sh script: buildCommand, returnStatus: true
-                }
-            }
-        }
-
         stage('Docker Build') {
             steps {
                 script {
@@ -31,6 +20,9 @@ pipeline {
         }
 
         stage('Run in Docker') {
+            agent {
+                label "webSrv"
+            }
             steps {
                 script {
                 def dockerImage = "mijn-dotnet-app"
