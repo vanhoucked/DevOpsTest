@@ -38,24 +38,12 @@ pipeline {
             }
             steps {
                 script {
-                    docker.image(${dockerImage}).file(${dockerImageFile}).save()
+                    docker.image("${dockerImage}").file("${dockerImageFile}").save()
 
                     sh "scp ${dockerImageFile} ${remote_username}@${remote_password}:/vagrant/"
                 }
             }
         }
-
-        /* stage('Run in Docker') {
-            steps {
-                script {
-                def dockerImage = "mijn-dotnet-app"
-                def containerName = "mijn-dotnet-app-container"
-                def port = "3000"
-
-                sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}"
-                }
-            }
-        } */
 
         stage('Load Docker image on webSrv node') {
             agent {
