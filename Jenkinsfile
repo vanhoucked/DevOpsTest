@@ -10,22 +10,18 @@ pipeline {
         remote_username = "vagrant"
         remote_password = "vagrant"
         remote_ip = "172.16.128.102"
+        containerName = "mijn-dotnet-app-container"
+        port = "3000"
     }
 
     stages {
         stage('Checkout') {
-            agent {
-                label 'jenkinsSrv'
-            }
             steps {
                 checkout scm
             }
         }
 
         stage('Docker Build') {
-            agent {
-                label 'jenkinsSrv'
-            }
             steps {
                 script {
                     sh "docker build -t ${dockerImage} ."
@@ -34,9 +30,6 @@ pipeline {
         }
 
         stage('Export and transfer Docker image') {
-            agent {
-                label 'jenkinsSrv'
-            }
             steps {
                 script {
                     sh "docker save -o ${dockerImageFile} ${dockerImage}"
@@ -63,14 +56,20 @@ pipeline {
             }
             steps {
                 script {
-                    def containerName = "mijn-dotnet-app-container"
-                    def port = "3000"
-
                     sh "docker run -p ${port}:80 --rm --name ${containerName} ${dockerImage}" 
                 }
             }
         }
 
+    }
+
+    post {
+        always {
+            script {
+                sh "rm -f ${dockerImageFile}"
+                sh "docker rm ${containerName}"
+            }
+        }
     }
 
 }
