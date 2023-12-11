@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         dockerImage = "dotnet"
-        dockerImageFile = ${dockerImage} + ".tar"
+        dockerImageFile = "${dockerImage}.tar"
         remote_username = "vagrant"
         remote_password = "vagrant"
     }
