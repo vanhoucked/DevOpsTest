@@ -1,5 +1,8 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
+    agent {
+        label 'jenkinsSrv'
+    }
 
     environment {
         dockerImage = "dotnet"
