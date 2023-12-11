@@ -38,8 +38,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.image("${dockerImage}").file("${dockerImageFile}").save()
-
+                    sh "docker save -o ${dockerImageFile} ${dockerImage}"
                     sh "scp ${dockerImageFile} ${remote_username}@${remote_password}:/vagrant/"
                 }
             }
