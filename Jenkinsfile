@@ -35,14 +35,14 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            script {
-                def containerName = "mijn-dotnet-app-container"
+ #   post {
+ #       always {
+ #           script {
+ #               def containerName = "mijn-dotnet-app-container"
                 
-                sh "docker rm ${containerName}"
-            }
-        }
-    }
+ #               sh "docker rm ${containerName}"
+ #           }
+ #       }
+ #   }
 
 }
