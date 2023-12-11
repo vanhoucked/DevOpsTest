@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh "docker save -o ${dockerImageFile} ${dockerImage}"
-                    sh "scp -o StrictHostKeyChecking=no ${dockerImageFile} ${remote_username}@${remote_ip}:/vagrant/"
+                    sh "sudo scp -o StrictHostKeyChecking=no ${dockerImageFile} ${remote_username}@${remote_ip}:/vagrant/"
                 }
             }
         }
