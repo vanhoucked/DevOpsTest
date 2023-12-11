@@ -9,6 +9,7 @@ pipeline {
         dockerImageFile = "${dockerImage}.tar"
         remote_username = "vagrant"
         remote_password = "vagrant"
+        remote_ip = "172.16.128.102"
     }
 
     stages {
@@ -39,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh "docker save -o ${dockerImageFile} ${dockerImage}"
-                    sh "scp ${dockerImageFile} ${remote_username}@${remote_password}:/vagrant/"
+                    sh "scp ${dockerImageFile} ${remote_username}@${remote_ip}:/vagrant/"
                 }
             }
         }
